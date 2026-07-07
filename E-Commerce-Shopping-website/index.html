@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShopNest - Online Shopping</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- ==================================================
+     NAVIGATION BAR
+================================================== -->
+
+<nav class="navbar">
+    <div class="nav-container">
+
+        <a href="index.html" class="logo">Shop<span>Nest</span></a>
+
+        <button class="mobile-nav-toggle" onclick="toggleMobileNav()" aria-label="Menu">☰</button>
+
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="Search products, categories...">
+            <button onclick="searchProducts()">🔍</button>
+        </div>
+
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="#products">Products</a>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
+            <a href="cart.html" class="cart-link">🛒 Cart <span id="cartCount">0</span></a>
+        </div>
+
+    </div>
+</nav>
+
+
+
+<!-- ==================================================
+     MAIN PAGE
+================================================== -->
+
+<div class="main-container">
+
+    <!-- ==================================================
+         SIDEBAR
+    ================================================== -->
+
+    <aside class="sidebar">
+
+        <h1>ShopNest</h1>
+        <p class="shop-tagline">Shop Smart. Live Better.</p>
+
+        <!-- CATEGORIES -->
+        <div class="categories">
+            <a href="#" data-category="all" class="active" onclick="filterProducts('all', event)">All Products</a>
+            <a href="#" data-category="electronics" onclick="filterProducts('electronics', event)">📱 Electronics</a>
+            <a href="#" data-category="fashion" onclick="filterProducts('fashion', event)">👗 Fashion</a>
+            <a href="#" data-category="accessories" onclick="filterProducts('accessories', event)">⌚ Accessories</a>
+            <a href="#" data-category="home" onclick="filterProducts('home', event)">🏠 Home &amp; Living</a>
+            <a href="#" data-category="beauty" onclick="filterProducts('beauty', event)">💄 Beauty</a>
+            <a href="#" data-category="sports" onclick="filterProducts('sports', event)">🏸 Sports</a>
+        </div>
+
+        <!-- SIDEBAR OFFER -->
+        <div class="sidebar-offer">
+            <p>LIMITED OFFER</p>
+            <h2>50% OFF</h2>
+            <span>On selected products</span>
+            <button onclick="scrollToProducts()">Shop Now</button>
+        </div>
+
+        <!-- TRUST BADGE -->
+        <div class="sidebar-trust">
+            <p>⭐ 4.7/5 average rating</p>
+            <p>📦 50,000+ orders delivered</p>
+        </div>
+
+    </aside>
+
+
+    <!-- ==================================================
+         RIGHT CONTENT
+    ================================================== -->
+
+    <main class="content">
+
+        <!-- HERO BANNER -->
+        <section class="banner" id="banner">
+
+            <button class="banner-arrow left-arrow" onclick="previousBanner()">&#10094;</button>
+
+            <div class="banner-content">
+                <span class="banner-label">BIG SHOPPING DAYS</span>
+                <h2 id="bannerTitle">Everything You Love, All in One Place</h2>
+                <p id="bannerText">Discover amazing products at unbeatable prices.</p>
+                <div class="offer">UP TO <strong>70% OFF</strong></div>
+                <button onclick="scrollToProducts()">SHOP NOW →</button>
+            </div>
+
+            <button class="banner-arrow right-arrow" onclick="nextBanner()">&#10095;</button>
+
+            <div class="banner-dots">
+                <span class="active"></span>
+                <span></span>
+                <span></span>
+            </div>
+
+        </section>
+
+
+        <!-- PRODUCT HEADING -->
+        <div class="product-heading">
+            <div>
+                <h2>Featured Products</h2>
+                <p id="resultCount">Explore our latest products</p>
+            </div>
+
+            <select id="sortProducts" onchange="sortProductCards()">
+                <option value="default">Sort By</option>
+                <option value="low">Price: Low to High</option>
+                <option value="high">Price: High to Low</option>
+                <option value="name">Product Name</option>
+            </select>
+        </div>
+
+
+        <!-- PRODUCT GRID -->
+        <section class="product-grid" id="products">
+            <!-- Products will automatically be created using JavaScript -->
+        </section>
+
+        <div class="load-more-wrap" id="loadMoreWrap">
+            <button class="load-more-btn" onclick="loadMoreProducts()">Load More Products</button>
+        </div>
+
+        <!-- NO RESULTS -->
+        <div class="no-results" id="noResults">
+            <h2>No Products Found</h2>
+            <p>Try another product name or category.</p>
+        </div>
+
+    </main>
+
+</div>
+
+
+
+<!-- ==================================================
+     SHOPPING FEATURES
+================================================== -->
+
+<section class="features">
+    <div class="feature-container">
+
+        <div class="feature">
+            <span>🚚</span>
+            <div>
+                <h3>Free Delivery</h3>
+                <p>On orders above ₹499</p>
+            </div>
+        </div>
+
+        <div class="feature">
+            <span>↩️</span>
+            <div>
+                <h3>Easy Returns</h3>
+                <p>7-day return policy</p>
+            </div>
+        </div>
+
+        <div class="feature">
+            <span>🔒</span>
+            <div>
+                <h3>Secure Payment</h3>
+                <p>Safe and protected</p>
+            </div>
+        </div>
+
+        <div class="feature">
+            <span>🎧</span>
+            <div>
+                <h3>Customer Support</h3>
+                <p>We're here to help</p>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+
+
+<!-- ==================================================
+     ABOUT
+================================================== -->
+
+<section class="about-section" id="about">
+    <h2>Why Shop With ShopNest?</h2>
+    <p>
+        Discover quality products, exciting deals and a convenient shopping experience.
+        From electronics and fashion to accessories, home essentials, beauty and sports gear,
+        ShopNest brings everything you need together in one place.
+    </p>
+</section>
+
+
+
+<!-- ==================================================
+     NEWSLETTER
+================================================== -->
+
+<section class="newsletter">
+    <div class="newsletter-container">
+        <div>
+            <h2>Never Miss a Deal</h2>
+            <p>Subscribe for exclusive offers and early access to sales.</p>
+        </div>
+        <form class="newsletter-form" onsubmit="subscribeNewsletter(event)">
+            <input type="email" id="newsletterEmail" placeholder="Enter your email address">
+            <button type="submit">Subscribe</button>
+        </form>
+    </div>
+</section>
+
+
+
+<!-- ==================================================
+     FOOTER
+================================================== -->
+
+<footer id="contact">
+    <div class="footer-container">
+
+        <div>
+            <h2>Shop<span>Nest</span></h2>
+            <p>Your trusted destination for simple, secure and enjoyable online shopping.</p>
+        </div>
+
+        <div>
+            <h3>Quick Links</h3>
+            <a href="index.html">Home</a>
+            <a href="#products">Products</a>
+            <a href="#about">About</a>
+        </div>
+
+        <div>
+            <h3>Customer Care</h3>
+            <a href="#">Help Center</a>
+            <a href="#">Returns</a>
+            <a href="#">Track Order</a>
+        </div>
+
+        <div>
+            <h3>Contact</h3>
+            <p>support@shopnest.com</p>
+            <p>+91 98765 43210</p>
+        </div>
+
+    </div>
+
+    <div class="copyright">
+        Copyright © 2026 ShopNest. All Rights Reserved.
+    </div>
+</footer>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>
